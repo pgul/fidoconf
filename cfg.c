@@ -374,7 +374,7 @@ char *configline(void)
       condition = condition && ifstack[iflevel].state;
       continue;
     }
-    if (strncasecmp(str, "elseif ", 7)==0)
+    if (strncasecmp(str, "elseif ", 7)==0 || strncasecmp(str, "elif ", 5) == 0)
     {
       if ((iflevel==-1) || ifstack[iflevel].inelse)
       { fprintf(stderr, "Misplaces elseif in config %s line %d ignored!\n",
@@ -386,7 +386,7 @@ char *configline(void)
       if (ifstack[iflevel].wastrue)
         ifstack[iflevel].state=0;
       else
-        ifstack[iflevel].state=ifstack[iflevel].wastrue=boolexpr(str+6);
+        ifstack[iflevel].state=ifstack[iflevel].wastrue=boolexpr(strchr(str, ' '));
       setcond;
       continue;
     }
@@ -526,7 +526,7 @@ int cmpfnames(char *file1, char *file2)
 }
 
 #elif defined (__OS2__)
-static int cmpfnames(char *file1, char *file2)
+int cmpfnames(char *file1, char *file2)
 {
   char path1[256], path2[256];
 
