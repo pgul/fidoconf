@@ -2347,7 +2347,7 @@ Add aka(s) to SEEN-BYs.
 
 This statement can be repeated.
 
-@node tearline, origin, addToSeen, Keywords
+@node tearline, origin, AddToSeen, Keywords
 @subsection tearline
 @table @asis
 @item Syntax:
